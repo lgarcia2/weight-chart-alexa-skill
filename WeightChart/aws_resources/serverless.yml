@@ -65,7 +65,7 @@ functions:
     name: weight-chart-${opt:stage, self:provider.stage}
     handler: aws_resources.hello_world
     events: 
-      - alexaSkill: amzn1.ask.skill.xxx
+      - alexaSkill: amzn1.ask.skill  # NOTE: add the skill Id here for real deployments
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
@@ -79,7 +79,7 @@ functions:
 #      - schedule: rate(10 minutes)
 #      - sns: greeter-topic
 #      - stream: arn:aws:dynamodb:region:XXXXXX:table/foo/stream/1970-01-01T00:00:00.000
-#      - alexaSkill: amzn1.ask.skill.xx-xx-xx-xx
+#      - alexaSkill: amzn1.ask.skill
 #      - alexaSmartHome: amzn1.ask.skill.xx-xx-xx-xx
 #      - iot:
 #          sql: "SELECT * FROM 'some_topic'"

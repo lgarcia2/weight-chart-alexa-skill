@@ -2,6 +2,10 @@
 An Alexa Skill to Track and Chart a person's weight
 
 
+# Setup Environment
+- make sure to install requirements.txt
+- to prevent the Alexa Skill Id from being committed run the command `pre-commit install` after installing the requirements in requirements.txt
+
 # Required Tools
 - [Python 3.8](https://www.python.org/)
 
