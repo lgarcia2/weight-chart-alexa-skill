@@ -63,9 +63,9 @@ provider:
 functions:
   hello:
     name: weight-chart-${opt:stage, self:provider.stage}
-    handler: aws_resources.hello_world
+    handler: hello_world #aws_resources.hello_world
     events: 
-      - alexaSkill: amzn1.ask.skill  # NOTE: add the skill Id here for real deployments
+      - alexaSkill: amzn1.ask.skill  # NOTE: add the skill Id here for real deployments. Found in developer console -> build tab -> endpoint
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
