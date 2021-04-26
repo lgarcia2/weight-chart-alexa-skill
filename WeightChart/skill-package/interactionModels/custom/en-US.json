@@ -1,43 +1,181 @@
 {
-    "interactionModel": {
-        "languageModel": {
-            "invocationName": "hello world",
-            "intents": [
-                {
-                    "name": "AMAZON.CancelIntent",
-                    "samples": []
-                },
-                {
-                    "name": "AMAZON.HelpIntent",
-                    "samples": []
-                },
-                {
-                    "name": "AMAZON.StopIntent",
-                    "samples": []
-                },
-                {
-                    "name": "HelloWorldIntent",
-                    "slots": [],
-                    "samples": [
-                        "hello",
-                        "how are you",
-                        "say hi world",
-                        "say hi",
-                        "hi",
-                        "say hello world",
-                        "say hello"
-                    ]
-                },
-                {
-                    "name": "AMAZON.NavigateHomeIntent",
-                    "samples": []
-                },
-                {
-                    "name": "AMAZON.FallbackIntent",
-                    "samples": []
-                }
-            ],
-            "types": []
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "weight chart",
+      "intents": [
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "HelloWorldIntent",
+          "slots": [],
+          "samples": [
+            "hello",
+            "how are you",
+            "say hi world",
+            "say hi",
+            "hi",
+            "say hello world",
+            "say hello"
+          ]
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.FallbackIntent",
+          "samples": []
+        },
+        {
+          "name": "AddWeightIntent",
+          "slots": [
+            {
+              "name": "USER_WEIGHT_VALUE",
+              "type": "AMAZON.NUMBER",
+              "samples": [
+                "I am {USER_WEIGHT_VALUE} {USER_WEIGHT_UNITS}",
+                "I weigh {USER_WEIGHT_VALUE} {USER_WEIGHT_UNITS}",
+                "add weight {USER_WEIGHT_VALUE} {USER_WEIGHT_UNITS}",
+                "set weight to {USER_WEIGHT_VALUE} {USER_WEIGHT_UNITS}",
+                "set weight {USER_WEIGHT_VALUE} {USER_WEIGHT_UNITS} "
+              ]
+            },
+            {
+              "name": "USER_WEIGHT_UNITS",
+              "type": "WEIGHT_UNIT"
+            }
+          ],
+          "samples": [
+            "I\u0027m {USER_WEIGHT_VALUE} {USER_WEIGHT_UNITS}",
+            "I am {USER_WEIGHT_VALUE} {USER_WEIGHT_UNITS}",
+            "I weigh {USER_WEIGHT_VALUE} {USER_WEIGHT_UNITS}",
+            "my weight is {USER_WEIGHT_VALUE} {USER_WEIGHT_UNITS}",
+            "set weight {USER_WEIGHT_VALUE} {USER_WEIGHT_UNITS}",
+            "add weight",
+            "record weight"
+          ]
         }
-    }
+      ],
+      "types": [
+        {
+          "values": [
+            {
+              "id": "st",
+              "name": {
+                "value": "stones",
+                "synonyms": [
+                  "stone"
+                ]
+              }
+            },
+            {
+              "id": "kg",
+              "name": {
+                "value": "kilograms",
+                "synonyms": [
+                  "kilogram"
+                ]
+              }
+            },
+            {
+              "id": "lbs",
+              "name": {
+                "value": "pounds",
+                "synonyms": [
+                  "pound"
+                ]
+              }
+            }
+          ],
+          "name": "WEIGHT_UNIT"
+        }
+      ]
+    },
+    "dialog": {
+      "intents": [
+        {
+          "name": "AddWeightIntent",
+          "confirmationRequired": true,
+          "prompts": {
+            "confirmation": "Confirm.Intent.871824013490"
+          },
+          "slots": [
+            {
+              "name": "USER_WEIGHT_VALUE",
+              "type": "AMAZON.NUMBER",
+              "elicitationRequired": true,
+              "confirmationRequired": true,
+              "prompts": {
+                "confirmation": "Confirm.Slot.546036060593.820702180816",
+                "elicitation": "Elicit.Slot.336272843778.1275008161374"
+              }
+            },
+            {
+              "name": "USER_WEIGHT_UNITS",
+              "type": "WEIGHT_UNIT",
+              "elicitationRequired": false,
+              "confirmationRequired": false,
+              "prompts": {},
+              "validations": [
+                {
+                  "type": "hasEntityResolutionMatch",
+                  "prompt": "Slot.Validation.277003729334.1441778262940.1161151013082"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "delegationStrategy": "ALWAYS"
+    },
+    "prompts": [
+      {
+        "id": "Confirm.Intent.871824013490",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "All right, {USER_WEIGHT_VALUE} , did I get that right?"
+          }
+        ]
+      },
+      {
+        "id": "Confirm.Slot.546036060593.820702180816",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Did you say {USER_WEIGHT_VALUE} {USER_WEIGHT_UNITS} ?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.336272843778.1275008161374",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "How much do you weigh?"
+          }
+        ]
+      },
+      {
+        "id": "Slot.Validation.277003729334.1441778262940.1161151013082",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "I\u0027m sorry I don\u0027t understand how much {USER_WEIGHT_VALUE} {USER_WEIGHT_UNITS} is."
+          }
+        ]
+      }
+    ]
+  },
+  "version": "9"
 }

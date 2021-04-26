@@ -27,8 +27,6 @@ provider:
   name: aws
   runtime: python3.8
   lambdaHashingVersion: 20201221
-
-# you can overwrite defaults here
   stage: dev
   region: us-east-1
 
@@ -62,10 +60,10 @@ provider:
 
 functions:
   hello:
-    name: weight-chart-${opt:stage, self:provider.stage}
-    handler: hello_world.handler #aws_resources.hello_world.handler
+    name: weight-chart-handler-${opt:stage, self:provider.stage}
+    handler: weight_chart_lambda.handler
     events: 
-      - alexaSkill:  # NOTE: add the skill Id here for real deployments. Found in developer console -> build tab -> endpoint
+      - alexaSkill:  amzn1.ask.skill # NOTE: add the skill Id here for real deployments. Found in developer console -> build tab -> endpoint
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events

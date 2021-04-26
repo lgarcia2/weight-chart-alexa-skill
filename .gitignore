@@ -127,3 +127,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# quick reference for aws params
+arn_skill_info.txt
