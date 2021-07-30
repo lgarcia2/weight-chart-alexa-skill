@@ -11,7 +11,7 @@
 #
 # Happy Coding!
 
-service: aws-resources
+service: weight-chart
 # app and org for use with dashboard.serverless.com
 #app: your-app-name
 #org: your-org-name
@@ -59,6 +59,7 @@ provider:
 #    - include-me-dir/**
 
 functions:
+  # TODO: Rename this hello function as well as the function name
   hello:
     name: weight-chart-handler-${opt:stage, self:provider.stage}
     handler: weight_chart_lambda.handler
@@ -108,6 +109,24 @@ functions:
 # you can add CloudFormation resource templates here
 #resources:
 #  Resources:
+#    recordsTable:
+#      Type: AWS::DynamoDB::Table
+#      Properties:
+#        TableName: ${self:service}-${opt:stage, self:provider.stage}-records
+#        AttributeDefinitions:
+#          - AttributeName: pk
+#            AttributeType: S
+#          - AttributeName: version
+#            AttributeType: S
+#          - AttributeName: data
+#            AttributeType: S
+#        KeySchema: 
+#          - AttributeName: pk
+#            KeyType: HASH
+#        #ProvisionedThroughput:
+#        #  ReadCapacityUnits: 5
+#        #  WriteCapacityUnits: 5
+
 #    NewResource:
 #      Type: AWS::S3::Bucket
 #      Properties:
